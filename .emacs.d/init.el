@@ -7,10 +7,12 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(clojure-mode
+  '(coffee-mode
+    clojure-mode
     clojure-test-mode
     clojurescript-mode
     haml-mode
+    rainbow-delimiters
     ruby-mode
     scpaste
     scss-mode
@@ -46,8 +48,9 @@
 (load (expand-file-name "workarounds.el" emacs-config-dir))
 
 ;; start eshell upon starting emacs
-(eshell)
+;;(eshell)
 
 ;; graaaaaaah! eshell doesn't respect eval-after-load for some reason:
-(with-current-buffer "*eshell*" (setq pcomplete-cycle-completions nil))
-(set-face-foreground 'eshell-prompt "turquoise")
+;;(with-current-buffer "*eshell*" (setq pcomplete-cycle-completions nil))
+;;(set-face-foreground 'eshell-prompt "turquoise")
+
