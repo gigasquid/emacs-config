@@ -44,6 +44,16 @@
 (color-theme-night)
 
 
+;;Ag
+(require 'ag)
+
+;; I like to bind the *-at-point commands to F5 and F6:
+
+(global-set-key (kbd "<f5>") 'ag-project-at-point)
+(global-set-key (kbd "<f6>") 'ag-regexp-project-at-point)
+
+
+
 ;;trailing white space
 (setq-default show-trailing-whitespace t)
 
@@ -70,7 +80,7 @@
 (message "All done!")
 
 ;;lisp indent
-(setq lisp-indent-offset 2)
+;(setq lisp-indent-offset 2)
 
 ;;turn off the auto fill mode
 (setq auto-fill-mode nil)
@@ -148,3 +158,26 @@
           '(lambda ()
              (define-key clojure-mode-map (kbd "C-c e") 'shell-eval-last-expression)
              (define-key clojure-mode-map (kbd "C-c x") 'shell-eval-defun)))
+
+;; nrepl
+(add-hook 'nrepl-interaction-mode-hook
+  'nrepl-turn-on-eldoc-mode)
+
+(setq nrepl-popup-stacktraces nil)
+
+(add-to-list 'same-window-buffer-names "*nrepl*")
+
+
+;;; org-mode
+;; The following lines are always needed.  Choose your own keys.
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+
+;; tempo
+(require 'tempo)
+(setq tempo-interactive t)
+
+;;yasnippet
+(yas-global-mode 1)

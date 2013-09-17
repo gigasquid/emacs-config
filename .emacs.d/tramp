@@ -1,6 +1,6 @@
-;; -*- emacs-lisp -*- <11/12/08 17:27:40 /Users/cmeier/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <12/11/14 08:36:10 /Users/cmeier/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
-((["scpc" nil "git" nil]
+((["scpc" nil "irbldprt1" nil]
    nil))
