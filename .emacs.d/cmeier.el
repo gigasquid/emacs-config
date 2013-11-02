@@ -181,3 +181,7 @@
 
 ;;yasnippet
 (yas-global-mode 1)
+
+(setq ffap-machine-p-known 'reject)
+
+
