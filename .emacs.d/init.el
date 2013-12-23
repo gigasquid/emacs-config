@@ -12,7 +12,6 @@
 (defvar my-packages
   '(coffee-mode
     clojure-mode
-    clojure-test-mode
     clojurescript-mode
     haml-mode
     rainbow-delimiters
@@ -29,7 +28,7 @@
     magit
     markdown-mode
     marmalade
-    nrepl
+    cider
     oddmuse
     yaml-mode))
 

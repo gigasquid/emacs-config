@@ -160,12 +160,11 @@
              (define-key clojure-mode-map (kbd "C-c x") 'shell-eval-defun)))
 
 ;; nrepl
-(add-hook 'nrepl-interaction-mode-hook
-  'nrepl-turn-on-eldoc-mode)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
-(setq nrepl-popup-stacktraces nil)
+(setq cider-popup-stacktraces nil)
 
-(add-to-list 'same-window-buffer-names "*nrepl*")
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
 
 ;;; org-mode
