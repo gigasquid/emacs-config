@@ -164,7 +164,11 @@
 
 (setq cider-popup-stacktraces nil)
 
+(setq cider-repl-display-in-current-window t)
+;(add-hook 'cider-repl-mode-hook 'paredit-mode)
+
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+
 
 
 ;;; org-mode
@@ -179,8 +183,57 @@
 (setq tempo-interactive t)
 
 ;;yasnippet
-(yas-global-mode 1)
+;;(yas-global-mode 1)
 
 (setq ffap-machine-p-known 'reject)
 
+;; Star-lang
+(require 'star)
+(add-to-list 'auto-mode-alist '("\\.star$" . star-mode))
+
+;; AsciiDoc
+;; --------
+(add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
+(add-hook 'adoc-mode-hook 'cider-mode) ;; For book writing
+
+;; ;; Make C-c C-z switch to *nrepl*
+(setq cider-repl-display-in-current-window t)
+
+(defun rkn-print-results-on-next-line (value)
+  (end-of-line)
+  (newline)
+  (insert (format ";; -> %s" value)))
+
+(defun rkn-nrepl-eval-newline-comment-print-handler (buffer)
+  (nrepl-make-response-handler buffer
+                               (lambda (buffer value)
+                                 (with-current-buffer buffer
+                                   (rkn-print-results-on-next-line value)))
+                               '()
+                               (lambda (buffer value)
+                                 (with-current-buffer buffer
+                                   (rkn-print-results-on-next-line value)))
+                               '()))
+
+(defun rkn-nrepl-interactive-eval-print (form)
+  "Evaluate the given FORM and print the value in the current
+  buffer on the next line as a comment."
+  (let ((buffer (current-buffer)))
+    (nrepl-send-string form
+                       (rkn-nrepl-eval-newline-comment-print-handler buffer)
+                       nrepl-buffer-ns)))
+
+(defun rkn-eval-expression-at-point-to-comment ()
+  (interactive)
+  (let ((form (cider-last-sexp)))
+    (rkn-nrepl-interactive-eval-print form)))
+
+;; From http://blog.jenkster.com/2013/12/a-cider-excursion.html
+;; Put [org.clojure/tools.namespace "0.2.4"] in ~/.lein/profiles.clj's
+;; :user :dependencies vector
+(defun cider-namespace-refresh ()
+  (interactive)
+  (cider-interactive-eval
+   "(require 'clojure.tools.namespace.repl)
+    (clojure.tools.namespace.repl/refresh)"))
 

@@ -1,0 +1,40 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Jun 19 16:33:06 2014
+;; Desktop file format version 206
+;; Emacs version 24.3.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring '("```" "clojure" "query" "list" "tx" "jar" "let" "case" "N" "abs" "where" "ag" "parse-digi" "clojure-test" "setup" "plucked"))
+(setq register-alist nil)
+(setq file-name-history '("/home/cmeier/.emacs.d/cmeier.el" "/home/cmeier/workspace/misc/living_clojure/1234000002138/00_introduction.asciidoc" "/home/cmeier/workspace/misc/living_clojure/1234000002138/01_are_you_comfortable.asciidoc" "/home/cmeier/workspace/misc/notes/book_idea.txt" "/home/cmeier/.emacs.d/cmeier.el" "/home/cmeier/workspace/clojureland/robot-dance-party/src/robot_dance_party/core.clj" "/home/cmeier/workspace/clojureland/robot-dance-party/src/robot_dance_party/sphero.clj" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/bin/st-osc.rb" "/home/cmeier/workspace/clojureland/robot-dance-party/src/robot_dance_party/sphero.clj" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/project.clj" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/bin/st-osc.rb" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/core.rb" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/project.clj" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/core.rb" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/project.clj" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/src/strangeloop_osc_test/core.clj" "/home/cmeier/workspace/clojureland/strangeloop/strangeloop-osc-test/core.rb" "/home/cmeier/workspace/misc/star-lang-katas/teaparty.star" "/home/cmeier/workspace/misc/star-lang-katas/reverse_word.star" "/home/cmeier/workspace/misc/star-lang-katas/teleprompter.star" "/home/cmeier/workspace/misc/star-lang-katas/gcd.star" "/home/cmeier/workspace/misc/star-lang-katas/fizzbuzz.star" "/home/cmeier/workspace/misc/star-lang-katas/fib.star" "/home/cmeier/workspace/misc/star-lang-katas/countdown.star" "/home/cmeier/workspace/misc/star-lang-katas/book_flight.star" "/home/cmeier/workspace/misc/star-lang-katas/countdown.star" "/home/cmeier/workspace/misc/star-lang-katas/book_flight.star" "/home/cmeier/workspace/misc/gigasquid.github.io/source/_posts/2013-02-05-the-joy-of-flying-ar-drones-with-clojure.markdown" "/home/cmeier/workspace/misc/star-lang-katas/README.md" "/home/cmeier/workspace/misc/star-lang-katas/book_flight.star"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/cmeier/workspace/misc/living_clojure/1234000002138/01_are_you_comfortable.asciidoc"
+  "01_are_you_comfortable.asciidoc"
+  'clojure-mode
+  '(auto-fill-mode global-auto-revert-mode ispell-minor-mode flyspell-mode paredit-mode eldoc-mode hi-lock-mode cider-mode text-scale-mode)
+  2420
+  '(2352 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-dos) (column-number-mode . t)))
+
+(desktop-create-buffer 206
+  "/home/cmeier/workspace/misc/notes/book_idea.txt"
+  "book_idea.txt"
+  'text-mode
+  '(auto-fill-mode global-auto-revert-mode flyspell-mode)
+  1405
+  '(1633 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+

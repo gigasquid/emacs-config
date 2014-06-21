@@ -1,0 +1,7 @@
+Warning (initialization): An error occurred while loading `/home/cmeier/.emacs.d/init.el':
+
+Symbol's function definition is void: yas-global-mode
+
+To ensure normal operation, you should investigate and remove the
+cause of the error in your initialization file.  Start Emacs with
+the `--debug-init' option to view a complete error backtrace.
