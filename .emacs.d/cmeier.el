@@ -162,12 +162,31 @@
 ;; nrepl
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
+(setq cider-repl-tab-command 'indent-for-tab-command)
+
+(setq cider-prefer-local-resources t)
+
 (setq cider-popup-stacktraces nil)
+
+(setq cider-stacktrace-fill-column 80)
+
+(setq nrepl-buffer-name-separator "-")
+
+(setq nrepl-buffer-name-show-port t)
+
+(setq cider-prompt-save-file-on-load nil)
+
+(setq cider-repl-result-prefix ";; => ")
+
+(setq cider-interactive-eval-result-prefix ";; => ")
+
+(setq cider-repl-wrap-history t)
+
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 (setq cider-repl-display-in-current-window t)
 ;(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
-(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
 
 
@@ -176,6 +195,9 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+;; turn off bell altogeter
+(setq ring-bell-function 'ignore)
 
 
 ;; tempo
@@ -236,4 +258,21 @@
   (cider-interactive-eval
    "(require 'clojure.tools.namespace.repl)
     (clojure.tools.namespace.repl/refresh)"))
+
+;; rainbow delimiters
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+;;(global-rainbow-delimiters-mode)
+
+;; windmove
+
+(global-set-key (kbd "C-c <Left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
+;; OSX stuff
+(define-key input-decode-map "\e[1;5A" [C-up])
+(define-key input-decode-map "\e[1;5B" [C-down])
+(define-key input-decode-map "\e[1;5C" [C-right])
+(define-key input-decode-map "\e[1;5D" [C-left])
 
