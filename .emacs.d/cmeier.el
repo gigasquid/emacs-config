@@ -276,3 +276,9 @@
 (define-key input-decode-map "\e[1;5C" [C-right])
 (define-key input-decode-map "\e[1;5D" [C-left])
 
+;; fix terminal highlighting
+(color-theme-solarized-dark)
+(set-face-background 'region "white")
+(set-face-foreground 'region "black")
+
+(menu-bar-mode -1) 
