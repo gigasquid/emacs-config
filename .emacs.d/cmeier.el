@@ -166,7 +166,7 @@
 
 (setq cider-prefer-local-resources t)
 
-(setq cider-popup-stacktraces nil)
+;;(setq cider-popup-stacktraces nil)
 
 (setq cider-stacktrace-fill-column 80)
 
@@ -281,4 +281,14 @@
 (set-face-background 'region "white")
 (set-face-foreground 'region "black")
 
-(menu-bar-mode -1) 
+(menu-bar-mode -1)
+
+
+;;; clj-refactor
+
+(add-hook 'clojure-mode-hook (lambda ()
+                               (clj-refactor-mode 1)
+                               ;; insert keybinding setup here
+                               ))
+
+
