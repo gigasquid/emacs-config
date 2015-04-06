@@ -1,7 +1,4 @@
-{:user {:plugin-repositories [["private-plugins" {:url "s3://outpace-maven/releases/"
-                                                  :username :env/aws_access_key_id
-                                                  :passphrase :env/aws_secret_access_key}]]
-        :plugins [[lein-pprint "1.1.1"]
+{:user {:plugins [[lein-pprint "1.1.1"]
                   [lein-localrepo "0.4.0"]
                   [cider/cider-nrepl "0.7.0"]
                   [lein-maven-s3-wagon "0.2.3"]
