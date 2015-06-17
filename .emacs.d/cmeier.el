@@ -159,6 +159,7 @@
              (define-key clojure-mode-map (kbd "C-c e") 'shell-eval-last-expression)
              (define-key clojure-mode-map (kbd "C-c x") 'shell-eval-defun)))
 
+
 ;; nrepl
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
@@ -166,7 +167,7 @@
 
 (setq cider-prefer-local-resources t)
 
-;;(setq cider-popup-stacktraces nil)
+(setq cider-popup-stacktraces nil)
 
 (setq cider-stacktrace-fill-column 80)
 
@@ -182,10 +183,14 @@
 
 (setq cider-repl-wrap-history t)
 
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook
+          (lambda ()
+            (cider-turn-on-eldoc-mode)
+            (nlinum-mode -1)
+            (paredit-mode 1)))
 
 (setq cider-repl-display-in-current-window t)
-;(add-hook 'cider-repl-mode-hook 'paredit-mode)
+;; ;(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 
 
@@ -243,7 +248,7 @@
   (let ((buffer (current-buffer)))
     (nrepl-send-string form
                        (rkn-nrepl-eval-newline-comment-print-handler buffer)
-                       nrepl-buffer-ns)))
+                       cider-buffer-ns)))
 
 (defun rkn-eval-expression-at-point-to-comment ()
   (interactive)
@@ -274,7 +279,7 @@
 (define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
 (define-key input-decode-map "\e[1;5C" [C-right])
-(define-key input-decode-map "\e[1;5D" [C-left])
+0(define-key input-decode-map "\e[1;5D" [C-left])
 
 ;; fix terminal highlighting
 (color-theme-solarized-dark)
@@ -288,7 +293,13 @@
 
 (add-hook 'clojure-mode-hook (lambda ()
                                (clj-refactor-mode 1)
-                               ;; insert keybinding setup here
+                               (cljr-add-keybindings-with-prefix "C-c C-a")
                                ))
 
+;;; make line numbers scale
+(setq nlinum-format "%4d \u2502 ")
 
+;;; stuff from Nygard
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;(define-key clojure-mode-map (kbd "C-c c") 'align-cljlet)
