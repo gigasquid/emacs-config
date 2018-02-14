@@ -10,38 +10,9 @@
 (global-set-key (kbd "C-c tm") 'ruby-test-function)
 (global-set-key (kbd "C-c s") 'project-grep)
 
-;; Color Theme
 
-(add-to-list 'load-path (concat dotfiles-dir "/color-theme"))
-(require 'color-theme)
-
-(add-to-list 'load-path (concat dotfiles-dir "/emacs-color-theme-solarized"))
-(require 'color-theme-solarized)
-
-(require 'color-theme-github)
-(require 'colman)
-(require 'color-theme-day)
-(require 'color-theme-night)
-
-(defun ct-github ()
-  "Select the github theme."
-  (interactive)
-  (require 'color-theme-github)
-  (color-theme-github))
-
-(defun ct-day ()
-  "Select the basic light theme."
-  (interactive)
-  (require 'color-theme-day)
-  (color-theme-day))
-
-(defun ct-night ()
-  "Select the basic dark theme."
-  (interactive)
-  (require 'color-theme-night)
-  (color-theme-night))
-
-(color-theme-night)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 
 ;;Ag
@@ -53,12 +24,20 @@
 (global-set-key (kbd "<f6>") 'ag-regexp-project-at-point)
 
 
+;; no backup files
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
 
-;;trailing white space
+
+;;Trailing white space
 (setq-default show-trailing-whitespace t)
 
 ;;auto refresh buffer
 (global-auto-revert-mode t)
+
+;;omg disable autofill
+(auto-fill-mode -1)
+(remove-hook 'text-mode-hook #'turn-on-auto-fill)
 
 ;; visible bell
 (setq visible-bell nil)
@@ -99,7 +78,7 @@
 
 ;(remove-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 ;(remove-hook 'prog-mode-hook 'esk-pretty-lambdas)
-(remove-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
+;(remove-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
 
 (global-set-key (kbd "C-z") 'scroll-down) ; I *hate* suspend bound on
                                 ; this key
@@ -161,45 +140,22 @@
 
 
 ;; nrepl
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
-(setq cider-repl-tab-command 'indent-for-tab-command)
-
-(setq cider-prefer-local-resources t)
-
-(setq cider-popup-stacktraces nil)
-
-(setq cider-stacktrace-fill-column 80)
-
-(setq nrepl-buffer-name-separator "-")
-
-(setq nrepl-buffer-name-show-port t)
-
-(setq cider-prompt-save-file-on-load nil)
-
+(add-hook 'cider-mode-hook #'eldoc-mode)
 (setq cider-repl-result-prefix ";; => ")
 
-(setq cider-interactive-eval-result-prefix ";; => ")
-
-(setq cider-repl-wrap-history t)
-
-(add-hook 'cider-repl-mode-hook
-          (lambda ()
-            (cider-turn-on-eldoc-mode)
-            (nlinum-mode -1)
-            (paredit-mode 1)))
-
-(setq cider-repl-display-in-current-window t)
-;; ;(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
+(setq cider-font-lock-dynamically '(macro core function var))
 
 
+(add-hook 'clojure-mode-hook #'paredit-mode)
 
 
 ;;; org-mode
 ;; The following lines are always needed.  Choose your own keys.
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
+;(global-set-key "\C-cl" 'org-store-link)
+;(global-set-key "\C-ca" 'org-agenda)
+;(global-set-key "\C-cb" 'org-iswitchb)
 
 ;; turn off bell altogeter
 (setq ring-bell-function 'ignore)
@@ -231,38 +187,6 @@
   (newline)
   (insert (format ";; -> %s" value)))
 
-(defun rkn-nrepl-eval-newline-comment-print-handler (buffer)
-  (nrepl-make-response-handler buffer
-                               (lambda (buffer value)
-                                 (with-current-buffer buffer
-                                   (rkn-print-results-on-next-line value)))
-                               '()
-                               (lambda (buffer value)
-                                 (with-current-buffer buffer
-                                   (rkn-print-results-on-next-line value)))
-                               '()))
-
-(defun rkn-nrepl-interactive-eval-print (form)
-  "Evaluate the given FORM and print the value in the current
-  buffer on the next line as a comment."
-  (let ((buffer (current-buffer)))
-    (nrepl-send-string form
-                       (rkn-nrepl-eval-newline-comment-print-handler buffer)
-                       cider-buffer-ns)))
-
-(defun rkn-eval-expression-at-point-to-comment ()
-  (interactive)
-  (let ((form (cider-last-sexp)))
-    (rkn-nrepl-interactive-eval-print form)))
-
-;; From http://blog.jenkster.com/2013/12/a-cider-excursion.html
-;; Put [org.clojure/tools.namespace "0.2.4"] in ~/.lein/profiles.clj's
-;; :user :dependencies vector
-(defun cider-namespace-refresh ()
-  (interactive)
-  (cider-interactive-eval
-   "(require 'clojure.tools.namespace.repl)
-    (clojure.tools.namespace.repl/refresh)"))
 
 ;; rainbow delimiters
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -279,12 +203,7 @@
 (define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
 (define-key input-decode-map "\e[1;5C" [C-right])
-0(define-key input-decode-map "\e[1;5D" [C-left])
-
-;; fix terminal highlighting
-(color-theme-solarized-dark)
-(set-face-background 'region "white")
-(set-face-foreground 'region "black")
+(define-key input-decode-map "\e[1;5D" [C-left])
 
 (menu-bar-mode -1)
 
@@ -300,6 +219,20 @@
 (setq nlinum-format "%4d \u2502 ")
 
 ;;; stuff from Nygard
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;(define-key clojure-mode-map (kbd "C-c c") 'align-cljlet)
+
+
+                                        ;(define-key clojure-mode-map (kbd "C-c c") 'align-cljlet)
+
+
+;; figwheel
+(setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+
+
+(require 'paren)
+(setq show-paren-style 'parenthesis)
+(show-paren-mode +1)
+
+(require 'helm-config)
+
