@@ -73,7 +73,7 @@
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
    (vector "#839496" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#002b36"))
- '(custom-enabled-themes (quote (sanityinc-solarized-light)))
+ '(custom-enabled-themes (quote (sanityinc-solarized-dark)))
  '(custom-safe-themes
    (quote
     ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "6cfe5b2f818c7b52723f3e121d1157cf9d95ed8923dbc1b47f392da80ef7495d" default)))
@@ -81,7 +81,7 @@
  '(global-nlinum-mode t)
  '(package-selected-packages
    (quote
-    (clj-refactor helm color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow twilight-theme smex scss-mode rainbow-identifiers oddmuse nlinum marmalade magit lua-mode inf-ruby ido-ubiquitous idle-highlight-mode haml-mode find-file-in-project elisp-slime-nav coffee-mode clojurescript-mode align-cljlet)))
+    (cider scala-mode clj-refactor helm color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow twilight-theme smex scss-mode rainbow-identifiers oddmuse nlinum marmalade magit lua-mode inf-ruby ido-ubiquitous idle-highlight-mode haml-mode find-file-in-project elisp-slime-nav coffee-mode clojurescript-mode align-cljlet)))
  '(safe-local-variable-values
    (quote
     ((buffer-file-coding-system . utf-8-unix)
@@ -117,3 +117,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(region ((t (:background "white")))))
+(put 'upcase-region 'disabled nil)

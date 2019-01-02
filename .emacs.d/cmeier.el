@@ -217,13 +217,14 @@
 
 ;;; make line numbers scale
 (setq nlinum-format "%4d \u2502 ")
+(setq global-nlinum-mode 1)
 
 ;;; stuff from Nygard
 ;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 
-                                        ;(define-key clojure-mode-map (kbd "C-c c") 'align-cljlet)
+;(define-key clojure-mode-map (kbd "C-c c") 'align-cljlet)
 
 
 ;; figwheel
@@ -232,7 +233,7 @@
 
 (require 'paren)
 (setq show-paren-style 'parenthesis)
-(show-paren-mode +1)
+(setq show-paren-mode 1)
 
 (require 'helm-config)
 
